@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────
+   CSS Custom Properties  (same as original Tailwind v3 @layer base :root)
+───────────────────────────────────────────────── */
+:root {
+  --background: 220 14% 96%;
+  --foreground: 230 25% 12%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 230 25% 12%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 230 25% 12%;
+
+  --primary: 335 80% 55%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 230 15% 95%;
+  --secondary-foreground: 230 25% 12%;
+
+  --muted: 230 15% 94%;
+  --muted-foreground: 230 10% 40%;
+
+  --accent: 25 95% 55%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 230 15% 88%;
+  --input: 230 15% 88%;
+  --ring: 335 80% 55%;
+
+  --radius: 0.75rem;
+
+  --sidebar-background: 230 15% 97%;
+  --sidebar-foreground: 230 25% 12%;
+  --sidebar-primary: 335 80% 55%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 230 15% 94%;
+  --sidebar-accent-foreground: 230 25% 12%;
+  --sidebar-border: 230 15% 88%;
+  --sidebar-ring: 335 80% 55%;
+
+  /* Chart placeholders (used by CMS) */
+  --chart-1: 335 80% 55%;
+  --chart-2: 25 95% 55%;
+  --chart-3: 230 25% 12%;
+  --chart-4: 230 15% 60%;
+  --chart-5: 335 60% 75%;
+
+  /* Custom gradient/shadow tokens */
+  --gradient-primary: linear-gradient(135deg, hsl(335 80% 55%), hsl(25 95% 55%));
+  --gradient-hero: linear-gradient(135deg, hsl(230 20% 15%) 0%, hsl(320 40% 20%) 50%, hsl(335 80% 45%) 100%);
+  --shadow-primary: 0 4px 30px hsl(335 80% 55% / 0.15);
+  --shadow-card: 0 2px 20px hsl(230 15% 50% / 0.08);
+}
+
+.dark {
+  --background: 230 25% 7%;
+  --foreground: 0 0% 95%;
+
+  --card: 230 20% 11%;
+  --card-foreground: 0 0% 95%;
+
+  --popover: 230 20% 11%;
+  --popover-foreground: 0 0% 95%;
+
+  --primary: 335 80% 55%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 230 20% 14%;
+  --secondary-foreground: 0 0% 95%;
+
+  --muted: 230 15% 16%;
+  --muted-foreground: 230 10% 55%;
+
+  --accent: 25 95% 55%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 230 15% 18%;
+  --input: 230 15% 18%;
+  --ring: 335 80% 55%;
+
+  --sidebar-background: 230 20% 9%;
+  --sidebar-foreground: 0 0% 95%;
+  --sidebar-primary: 335 80% 55%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 230 20% 14%;
+  --sidebar-accent-foreground: 0 0% 95%;
+  --sidebar-border: 230 15% 18%;
+  --sidebar-ring: 335 80% 55%;
+
+  --gradient-primary: linear-gradient(135deg, hsl(335 80% 55%), hsl(25 95% 55%));
+  --gradient-hero: linear-gradient(135deg, hsl(230 25% 7%) 0%, hsl(320 40% 20%) 50%, hsl(335 80% 45%) 100%);
+  --shadow-primary: 0 4px 30px hsl(335 80% 55% / 0.2);
+  --shadow-card: 0 2px 20px hsl(0 0% 0% / 0.3);
+}
+
+/* ─────────────────────────────────────────────────
+   Base layer (mirrors original @layer base)
+───────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    @apply font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-manrope);
+    font-feature-settings: "cv11";
+    letter-spacing: -0.02em;
+  }
+
+  code,
+  kbd,
+  pre,
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* ─────────────────────────────────────────────────
+   Utilities (exact copy from original index.css + extras)
+───────────────────────────────────────────────── */
+@layer utilities {
+
+  /* Blob animation (CMS) */
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .hero-gradient {
+    background: radial-gradient(circle at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+
+  /* Accordion animation classes */
+  .animate-accordion-down {
+    animation: var(--animate-accordion-down);
+  }
+
+  .animate-accordion-up {
+    animation: var(--animate-accordion-up);
+  }
+
+  /* ── Frontend utilities (identical to Cybertronium/src/index.css) ── */
+  .text-primary {
+    color: #C01E6C;
+  }
+
+  .text-fluid-xs {
+    font-size: clamp(0.625rem, 0.8vw + 0.4rem, 0.75rem);
+  }
+
+  .text-fluid-sm {
+    font-size: clamp(0.75rem, 1vw + 0.5rem, 0.875rem);
+  }
+
+  .text-fluid-base {
+    font-size: clamp(0.875rem, 1.2vw + 0.5rem, 1rem);
+  }
+
+  .text-fluid-lg {
+    font-size: clamp(1rem, 1.5vw + 0.6rem, 1.125rem);
+  }
+
+  .text-fluid-xl {
+    font-size: clamp(1.125rem, 2vw + 0.6rem, 1.25rem);
+  }
+
+  .text-fluid-2xl {
+    font-size: clamp(1.25rem, 2.5vw + 0.6rem, 1.5rem);
+  }
+
+  .text-fluid-3xl {
+    font-size: clamp(1.5rem, 3vw + 0.7rem, 1.875rem);
+  }
+
+  .text-fluid-4xl {
+    font-size: clamp(1.875rem, 4vw + 0.8rem, 2.25rem);
+  }
+
+  .text-fluid-5xl {
+    font-size: clamp(1.5rem, 4vw + 1rem, 3.125rem);
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(270.09deg, #F37A3A 16.02%, #CA1C69 91.5%);
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, hsl(230 25% 7%) 0%, hsl(320 40% 18%) 50%, hsl(335 70% 40%) 100%);
+  }
+
+  .bg-gradient-section {
+    background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(230 15% 97%) 100%);
+  }
+
+  .dark .bg-gradient-section {
+    background: linear-gradient(180deg, hsl(230 25% 7%) 0%, hsl(230 20% 10%) 100%);
+  }
+
+  .bg-gradient-cta {
+    background: linear-gradient(135deg, #511F5E, #C01E6C);
+    border: 1px solid #CC1F68;
+  }
+
+  .border-glow {
+    border-color: hsl(335 80% 55% / 0.3);
+    box-shadow: 0 0 15px hsl(335 80% 55% / 0.1);
+  }
+
+  .why-card-shadow {
+    box-shadow:
+      0px 7.77px 16px 0px #0000000F,
+      0px 3px 3px 0px #0000001A,
+      0px -8px 0px 0px #0000000D inset,
+      0px 4px 0px 0px #FFFFFF99 inset;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .why-card-shadow:hover {
+    box-shadow:
+      0px 14px 28px 0px #00000012,
+      0px 4px 6px 0px #0000001D,
+      0px -8px 0px 0px #0000000E inset,
+      0px 4px 0px 0px #FFFFFFB3 inset;
+    transform: translateY(-4px);
+    border-color: rgba(243, 122, 58, 0.18);
+  }
+
+  .bg-gradient-footer-card {
+    background: linear-gradient(135deg, #A81B5E, #CF2061);
+  }
+
+  .bg-circuit-pattern {
+    background-color: #0b0d17;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(192, 30, 108, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(81, 31, 94, 0.05) 0%, transparent 40%),
+      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10L90 90M90 10L10 90' stroke='rgba(255,255,255,0.02)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+  }
+
+  .contact-input {
+    @apply w-full bg-transparent border-b border-white/70 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-primary transition-colors;
+  }
+
+  /* ── Scrollbar utilities (used in AISecurity.tsx and others) ── */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* contact-input option must be outside @layer to target native select elements */
+.contact-input option {
+  background-color: #0b0d17;
+  color: white;
+}
