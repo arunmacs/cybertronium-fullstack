@@ -60,6 +60,41 @@ const nextConfig: NextConfig = {
 
   turbopack: {
     root: process.cwd(),
+    rules: {
+      "*.pdf": {
+        type: "asset",
+      },
+      "*.svg": [
+        {
+          condition: { query: /(^|&)react($|&)/ },
+          loaders: [
+            {
+              loader: "@svgr/webpack",
+              options: {
+                icon: true,
+                svgoConfig: {
+                  plugins: [
+                    {
+                      name: "preset-default",
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                        },
+                      },
+                    },
+                    "prefixIds",
+                  ],
+                },
+              },
+            },
+          ],
+          as: "*.js",
+        },
+        {
+          type: "asset",
+        },
+      ],
+    },
   },
 
   webpack(config) {
