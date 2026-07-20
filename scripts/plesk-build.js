@@ -51,15 +51,9 @@ log("🧹", "STEP 1 — Cleaning stale build caches");
 removeIfExists(".next", ".next cache");
 removeIfExists(".turbo", ".turbo cache");
 
-// ── Step 2: Remove problematic files ─────────────────────────────────
-//    Next.js 16 has an internal bug where prerendering /_global-error
-//    crashes with "Expected workStore to be initialized". The safest
-//    fix is to ensure the custom global-error file does not exist.
+// ── Step 2: Remove .disabled leftovers only ─────────────────────────
 
-log("🔍", "STEP 2 — Removing problematic files");
-removeIfExists("src/app/global-error.tsx", "global-error.tsx");
-removeIfExists("src/app/global-error.jsx", "global-error.jsx");
-removeIfExists("src/app/global-error.js", "global-error.js");
+log("🔍", "STEP 2 — Cleaning up disabled file remnants");
 removeIfExists("src/app/global-error.tsx.disabled", "global-error.tsx.disabled");
 
 // ── Step 3: Generate Prisma client ───────────────────────────────────
