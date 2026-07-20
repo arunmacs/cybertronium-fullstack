@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono, Manrope, Open_Sans } from "next/font/google";
 import "./globals.css";
 
+// Force all pages to render at request time, not at build time.
+// This prevents Prisma/MariaDB from being invoked during static generation.
+export const dynamic = 'force-dynamic';
+
+
 // Body font — clean, legible, industry-standard for dashboards
 const inter = Inter({
   variable: "--font-inter",
