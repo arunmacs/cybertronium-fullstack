@@ -11,9 +11,9 @@ import AwardsSection from "@/components/AwardsSection";
 import Footer from "@/components/Footer";
 import HomePageHero from "@/assets/home/home-hero-slide-1.webp";
 import HomePageHero2 from "@/assets/home/home-hero-slide-2.webp";
-import Link from "next/link";;
+import Link from "next/link";
 import { Sparkles } from "lucide-react";
-import SecureControl from "@assets/icons/glyph.svg?react";
+import SecureControlSvg from "@assets/icons/glyph.svg";
 
 
 const Index = () => {
@@ -42,7 +42,11 @@ const Index = () => {
                 </Link>
               </div>
             ),
-            badgeIcon: <SecureControl className="w-5 h-5 text-white" />
+            badgeIcon: (
+              <div className="w-7 h-7 flex items-center justify-center bg-white/30 rounded-full">
+                <img src={SecureControlSvg} alt="Secure Control" className="w-5 h-5 filter invert brightness-0" />
+              </div>
+            )
           },
           {
             image: HomePageHero2,

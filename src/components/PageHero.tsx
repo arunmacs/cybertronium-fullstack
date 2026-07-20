@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import SecureControl from "@assets/icons/glyph.svg?react";
+import SecureControlSvg from "@assets/icons/glyph.svg";
 import { useShowStats } from "@/hooks/useShowStats";
 import HrdCorpImg from "@assets/training/hrd-corp.webp";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";;
+import { usePathname } from "next/navigation";
 
 export interface PageHeroSlide {
   image?: string;
@@ -113,7 +113,7 @@ const PageHero = ({
       {slide.badge && (
         <div className="w-fit inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full pl-1 pr-3 py-1 mb-4 ml-4">
           <div className="w-7 h-7 flex items-center justify-center bg-white/30 rounded-full">
-            {!isGhost && (slide.badgeIcon ? slide.badgeIcon : <SecureControl className="w-5 h-5 text-white" />)}
+            {!isGhost && (slide.badgeIcon ? slide.badgeIcon : <img src={SecureControlSvg} alt="Secure Control" className="w-5 h-5 filter invert brightness-0" />)}
           </div>
           <span className="text-xs font-medium text-white">
             {slide.badge}
