@@ -43,16 +43,12 @@ const openSans = Open_Sans({
   display: "swap",
 });
 
-import { getProjectName } from "@/app/actions/setting-actions";
 import { ThemeProvider } from "next-themes";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const projectName = await getProjectName();
-  return {
-    title: `${projectName} | Content Management System`,
-    description: "Manage blog content from a single unified dashboard.",
-  };
-}
+export const metadata: Metadata = {
+  title: "Cybertronium | Content Management System",
+  description: "Manage blog content from a single unified dashboard.",
+};
 
 export default function RootLayout({
   children,
