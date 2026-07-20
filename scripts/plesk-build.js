@@ -65,7 +65,7 @@ run("npx prisma generate");
 
 log("🏗️", "STEP 4 — Building with Next.js (Turbopack)");
 //run("npx next build");
-run("npx next build --experimental-build-mode=compile");
+run("npx next build");
 
 
 // ── Done ─────────────────────────────────────────────────────────────
