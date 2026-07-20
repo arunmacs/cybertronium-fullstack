@@ -6,6 +6,7 @@
     "dev": "next dev --webpack",
     "postinstall": "prisma generate",
     "build": "node scripts/plesk-build.js",
+    "build:plesk": "node scripts/build-plesk.js",
     "start": "next start",
     "lint": "eslint"
   },

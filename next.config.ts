@@ -66,7 +66,6 @@ const nextConfig: NextConfig = {
       },
       "*.svg": [
         {
-          condition: { query: /(^|&)react($|&)/ },
           loaders: [
             {
               loader: "@svgr/webpack",
@@ -89,9 +88,6 @@ const nextConfig: NextConfig = {
             },
           ],
           as: "*.js",
-        },
-        {
-          type: "asset",
         },
       ],
     },
@@ -135,7 +131,8 @@ const nextConfig: NextConfig = {
       ],
     });
     return config;
-  }
+  },
+  output: "standalone"
 };
 
 export default nextConfig;
