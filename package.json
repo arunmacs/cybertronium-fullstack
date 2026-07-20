@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "postinstall": "prisma generate",
-    "prebuild": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true});console.log('Cleared .next cache')}catch(e){console.log('No .next cache to clear')}\"",
-    "build": "prisma generate && next build",
-    "build:plesk": "node scripts/build-plesk.js",
+    "build": "node scripts/plesk-build.js",
     "start": "next start",
     "lint": "eslint"
   },
