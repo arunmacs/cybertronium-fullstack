@@ -63,8 +63,8 @@ run("npx prisma generate");
 
 // ── Step 4: Run Next.js build (Turbopack) ────────────────────────────
 
-log("🏗️", "STEP 4 — Building with Next.js (Webpack to support SVGR)");
-run("npx next build --webpack");
+log("🏗️", "STEP 4 — Building with Next.js (Turbopack)");
+run("npx next build --experimental-build-mode=compile");
 
 // ── Done ─────────────────────────────────────────────────────────────
 
