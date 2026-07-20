@@ -69,11 +69,11 @@ if (fs.existsSync(globalErrorPath)) {
   fs.renameSync(globalErrorPath, globalErrorDisabledPath);
 }
 
-// ── Step 4: Run Next.js build (Turbopack) ────────────────────────────
+// ── Step 4: Run Next.js build (Webpack) ────────────────────────────
 
-log("🏗️", "STEP 4 — Building with Next.js (Turbopack)");
-//run("npx next build");
-run("npx next build");
+log("🏗️", "STEP 4 — Building with Next.js (Webpack)");
+// Bypass Turbopack bug on single-core by forcing Webpack
+run("npx next build --webpack");
 
 
 // ── Done ─────────────────────────────────────────────────────────────

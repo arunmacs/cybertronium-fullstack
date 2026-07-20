@@ -95,20 +95,18 @@ const nextConfig: NextConfig = {
   },
 
   webpack(config) {
-    // 1. Convert standard SVGs, PDFs, and images to URLs (Vite default behavior)
+    // 1. Convert PDFs and images to URLs (Vite default behavior)
     config.module.rules.push({
-      test: /\.(svg|pdf|png|jpe?g|gif|webp|avif)$/i,
-      resourceQuery: { not: [/react/] },
+      test: /\.(pdf|png|jpe?g|gif|webp|avif)$/i,
       type: 'asset/resource',
       generator: {
         filename: 'static/media/[name].[hash][ext]'
       }
     });
 
-    // 2. Convert ?react SVGs to React Components (vite-plugin-svgr behavior)
+    // 2. Convert ALL SVGs to React Components (SVGR behavior)
     config.module.rules.push({
       test: /\.svg$/i,
-      resourceQuery: /react/,
       use: [
         {
           loader: "@svgr/webpack",
