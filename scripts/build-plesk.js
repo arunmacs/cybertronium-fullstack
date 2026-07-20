@@ -62,6 +62,21 @@ if (fs.existsSync(envProdPath)) {
   if (fs.existsSync(envPath)) fs.cpSync(envPath, path.join(pleskBuildDir, '.env'));
 }
 
+// 8. Patch server.js to support IISNode named pipes
+console.log('🔧 Patching server.js for IISNode compatibility...');
+const serverJsPath = path.join(pleskBuildDir, 'server.js');
+if (fs.existsSync(serverJsPath)) {
+  let serverJs = fs.readFileSync(serverJsPath, 'utf8');
+  // IISNode passes a named pipe string (e.g. \\.\pipe\iisnode-...) via process.env.PORT.
+  // Next.js uses parseInt() which turns the pipe string into NaN, causing it to fallback to 3000.
+  // We remove parseInt to allow Node's http.listen() to use the named pipe directly.
+  serverJs = serverJs.replace(
+    /const currentPort = parseInt\(process\.env\.PORT, 10\) \|\| 3000/g,
+    'const currentPort = process.env.PORT || 3000'
+  );
+  fs.writeFileSync(serverJsPath, serverJs);
+}
+
 console.log('\n✅ Plesk build ready in ./plesk-build folder!');
 console.log('👉 To test locally exactly like Plesk:');
 console.log('   cd plesk-build');

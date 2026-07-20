@@ -20,6 +20,7 @@ const contentSecurityPolicyHeaderValue = cspHeader.replace(/\s{2,}/g, ' ').trim(
 const nextConfig: NextConfig = {
   // Vercel-specific: trust all proxy headers for correct URL resolution
   // (needed for NEXTAUTH_URL in production behind Vercel's edge)
+  output: "standalone",
 
   typescript: { ignoreBuildErrors: true },
 
@@ -132,7 +133,6 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
-  output: "standalone"
 };
 
 export default nextConfig;
