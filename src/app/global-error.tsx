@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import "./globals.css";
 
+export const dynamic = 'force-dynamic';
+
 // Global error boundary must wrap its own html/body tags
 export default function GlobalError({
   error,
