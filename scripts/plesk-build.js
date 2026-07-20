@@ -61,6 +61,14 @@ removeIfExists("src/app/global-error.tsx.disabled", "global-error.tsx.disabled")
 log("⚙️", "STEP 3 — Generating Prisma client");
 run("npx prisma generate");
 
+// ── Step 3.5: Disable global-error.tsx to prevent Next.js worker bug ─
+const globalErrorPath = path.join(ROOT, "src/app/global-error.tsx");
+const globalErrorDisabledPath = path.join(ROOT, "src/app/global-error.tsx.disabled");
+if (fs.existsSync(globalErrorPath)) {
+  log("🔧", "Renaming global-error.tsx to prevent Next.js worker crash...");
+  fs.renameSync(globalErrorPath, globalErrorDisabledPath);
+}
+
 // ── Step 4: Run Next.js build (Turbopack) ────────────────────────────
 
 log("🏗️", "STEP 4 — Building with Next.js (Turbopack)");
