@@ -3,7 +3,7 @@
   "config": {
     "env": {},
     "typescript": {
-      "ignoreBuildErrors": true
+      "ignoreBuildErrors": false
     },
     "typedRoutes": false,
     "distDir": ".next",
@@ -117,7 +117,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\Mind-Graph\\cybertronium-fullstack",
+    "outputFileTracingRoot": "C:\\Users\\Mind-Graph\\Projects\\Cybertronium-Fullstack",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -317,10 +317,16 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "C:\\Users\\Mind-Graph\\cybertronium-fullstack",
+      "root": "C:\\Users\\Mind-Graph\\Projects\\Cybertronium-Fullstack",
       "rules": {
+        "*.pdf": {
+          "type": "asset"
+        },
         "*.svg": [
           {
+            "condition": {
+              "query": {}
+            },
             "loaders": [
               {
                 "loader": "@svgr/webpack",
@@ -343,34 +349,16 @@
               }
             ],
             "as": "*.js"
+          },
+          {
+            "type": "asset"
           }
-        ],
-        "*.png": {
-          "type": "asset"
-        },
-        "*.jpg": {
-          "type": "asset"
-        },
-        "*.jpeg": {
-          "type": "asset"
-        },
-        "*.webp": {
-          "type": "asset"
-        },
-        "*.avif": {
-          "type": "asset"
-        },
-        "*.gif": {
-          "type": "asset"
-        },
-        "*.pdf": {
-          "type": "asset"
-        }
+        ]
       }
     },
     "distDirRoot": ".next"
   },
-  "appDir": "C:\\Users\\Mind-Graph\\cybertronium-fullstack",
+  "appDir": "C:\\Users\\Mind-Graph\\Projects\\Cybertronium-Fullstack",
   "relativeAppDir": "",
   "files": [
     ".next\\routes-manifest.json",
@@ -380,6 +368,8 @@
     ".next\\server\\functions-config-manifest.json",
     ".next\\server\\middleware-manifest.json",
     ".next\\server\\middleware-build-manifest.js",
+    ".next\\server\\middleware-react-loadable-manifest.js",
+    ".next\\react-loadable-manifest.json",
     ".next\\server\\app-paths-manifest.json",
     ".next\\app-path-routes-manifest.json",
     ".next\\server\\server-reference-manifest.js",

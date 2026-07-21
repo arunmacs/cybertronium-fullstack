@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/trainings/layout,_N_T_/(frontend)/trainings/iso-17024/layout,_N_T_/(frontend)/trainings/iso-17024/page,_N_T_/trainings/iso-17024"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ/trainings/iso-17024/__PAGE__",
+    "/!KGZyb250ZW5kKQ/trainings/iso-17024",
+    "/!KGZyb250ZW5kKQ/trainings",
+    "/!KGZyb250ZW5kKQ",
+    "/_index",
+    "/_head"
+  ]
+}

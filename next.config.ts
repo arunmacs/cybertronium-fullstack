@@ -62,10 +62,12 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
     rules: {
-      // All SVG imports → SVGR React components.
-      // Use as: <Logo className="..." /> NOT <img src={logo} />
+      "*.pdf": {
+        type: "asset",
+      },
       "*.svg": [
         {
+          condition: { query: /(^|&)react($|&)/ },
           loaders: [
             {
               loader: "@svgr/webpack",
@@ -75,7 +77,11 @@ const nextConfig: NextConfig = {
                   plugins: [
                     {
                       name: "preset-default",
-                      params: { overrides: { removeViewBox: false } },
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                        },
+                      },
                     },
                     "prefixIds",
                   ],
@@ -85,48 +91,59 @@ const nextConfig: NextConfig = {
           ],
           as: "*.js",
         },
+        {
+          type: "asset",
+        },
       ],
-      // Image formats → static URL strings
-      "*.png":  { type: "asset" },
-      "*.jpg":  { type: "asset" },
-      "*.jpeg": { type: "asset" },
-      "*.webp": { type: "asset" },
-      "*.avif": { type: "asset" },
-      "*.gif":  { type: "asset" },
-      "*.pdf":  { type: "asset" },
     },
   },
 
   webpack(config) {
-    // Images → URL strings
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|webp|avif|pdf)$/i,
-      type: "asset/resource",
-      generator: { filename: "static/media/[name].[hash][ext]" },
-    });
+    // 1. Grab Next.js's built-in file loader rule for SVGs
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      rule.test?.test?.('.svg'),
+    );
 
-    // All SVGs → SVGR React components (same as Turbopack above)
-    // Use as: <Logo className="..." /> NOT <img src={logo} />
-    config.module.rules.push({
-      test: /\.svg$/i,
-      use: [
-        {
-          loader: "@svgr/webpack",
-          options: {
-            icon: true,
-            svgoConfig: {
-              plugins: [
-                {
-                  name: "preset-default",
-                  params: { overrides: { removeViewBox: false } },
-                },
-                "prefixIds",
-              ],
+    config.module.rules.push(
+      // 2. Reapply Next.js's built-in rule, but ONLY for standard imports (no ?react)
+      {
+        ...fileLoaderRule,
+        test: /\.svg$/i,
+        resourceQuery: { not: [...(fileLoaderRule?.resourceQuery?.not || []), /react/] },
+      },
+      // 3. Convert ?react SVGs to React Components (SVGR)
+      {
+        test: /\.svg$/i,
+        issuer: fileLoaderRule?.issuer,
+        resourceQuery: /react/,
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              icon: true,
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        removeViewBox: false,
+                      },
+                    },
+                  },
+                  'prefixIds'
+                ],
+              },
             },
           },
-        },
-      ],
-    });
+        ],
+      }
+    );
+
+    // 4. Disable the default Next.js SVG rule completely, as we've taken over
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = /\.svg$/i;
+    }
 
     return config;
   },
@@ -134,3 +151,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+

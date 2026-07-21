@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/services/layout,_N_T_/(frontend)/services/cybersecurity-maturity-assessment/layout,_N_T_/(frontend)/services/cybersecurity-maturity-assessment/page,_N_T_/services/cybersecurity-maturity-assessment"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ/services/cybersecurity-maturity-assessment/__PAGE__",
+    "/!KGZyb250ZW5kKQ/services/cybersecurity-maturity-assessment",
+    "/!KGZyb250ZW5kKQ/services",
+    "/!KGZyb250ZW5kKQ",
+    "/_index",
+    "/_head"
+  ]
+}

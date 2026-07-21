@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import UpdateLogo from "@/assets/updatedLogo.svg?react";
+import UpdateLogo from "@/assets/updatedLogo.svg";
 import emailjs from "@emailjs/browser";
 import { EMAIL_CHALLENGE_FORM_FIELD_IDS } from "@/constants";
 import "./page.css";
@@ -206,7 +207,7 @@ export default function EmailSecurityChallengePage() {
         <header className="top">
           <div className="brand">
             <a href="/">
-              <UpdateLogo className="h-[52px] w-auto drop-shadow-xl" aria-label="Cybertronium" />
+              <Image src={UpdateLogo} alt="Cybertronium" width={200} height={52} className="h-[52px] w-auto drop-shadow-xl" />
             </a>
           </div>
           <div className="cpchip"><span className="dot"></span>Powered by <b>Check&nbsp;Point</b> Harmony Email &amp; Collaboration</div>

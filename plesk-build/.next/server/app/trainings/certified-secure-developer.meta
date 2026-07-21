@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/trainings/layout,_N_T_/(frontend)/trainings/certified-secure-developer/layout,_N_T_/(frontend)/trainings/certified-secure-developer/page,_N_T_/trainings/certified-secure-developer"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ/trainings/certified-secure-developer/__PAGE__",
+    "/!KGZyb250ZW5kKQ/trainings/certified-secure-developer",
+    "/!KGZyb250ZW5kKQ/trainings",
+    "/!KGZyb250ZW5kKQ",
+    "/_index",
+    "/_head"
+  ]
+}

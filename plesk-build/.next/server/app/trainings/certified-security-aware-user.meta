@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/trainings/layout,_N_T_/(frontend)/trainings/certified-security-aware-user/layout,_N_T_/(frontend)/trainings/certified-security-aware-user/page,_N_T_/trainings/certified-security-aware-user"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ/trainings/certified-security-aware-user/__PAGE__",
+    "/!KGZyb250ZW5kKQ/trainings/certified-security-aware-user",
+    "/!KGZyb250ZW5kKQ/trainings",
+    "/!KGZyb250ZW5kKQ",
+    "/_index",
+    "/_head"
+  ]
+}

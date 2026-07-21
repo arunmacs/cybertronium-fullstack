@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Sun, Moon, ChevronRight, Cpu } from "lucide-react";
 import { useTheme } from "next-themes";
-import Logo from "@/assets/updatedLogo.svg?react";
+import logo from "@/assets/updatedLogo.svg";
 
 import vulnHero from "@/assets/services/assessment/vulnerability-hero.webp";
 import penHero from "@/assets/services/assessment/pen-testing-hero.webp";
@@ -319,7 +319,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps = {}) => {
     >
       <div className="container mx-auto flex items-center justify-between relative gap-4">
         <a href="/" className="flex items-center gap-2.5 flex-shrink-0">
-          <Logo className="w-[140px] md:w-[150px] lg:w-[180px] h-auto" aria-label="Cybertronium" />
+          <img src={logo} alt="Logo" className="w-[140px] md:w-[150px] lg:w-[180px] h-auto" loading="lazy" decoding="async" />
         </a>
 
         {/* Desktop Nav items (Centered) */}
@@ -351,8 +351,8 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps = {}) => {
                         ? "bg-white border-t border-l border-gray-100"
                         : "bg-background/95 border-t border-l border-border/50",
                       link.label === "Trainings" ? "left-[37%] -translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2" :
-                        link.label === "Services" ? "left-[49%] -translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2" :
-                          "left-1/2 -translate-x-1/2"
+                      link.label === "Services" ? "left-[49%] -translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2" :
+                      "left-1/2 -translate-x-1/2"
                     )} />
 
                     {link.label === "Services" || link.label === "Trainings" ? (() => {
@@ -403,11 +403,7 @@ const Navbar = ({ alwaysSolid = false }: NavbarProps = {}) => {
                                   {/* Icon Placeholder */}
                                   <div className="shrink-0 w-11 h-11 flex items-center justify-center">
                                     {item.icon ? (
-                                      typeof item.icon === 'string' ? (
-                                        <img src={item.icon} alt={item.label} className="w-10 h-10 object-contain group-hover:scale-105 transition-transform duration-300" />
-                                      ) : (
-                                        <item.icon className="w-10 h-10 group-hover:scale-105 transition-transform duration-300" aria-hidden="true" />
-                                      )
+                                      <img src={item.icon} alt={item.label} className="w-10 h-10 object-contain group-hover:scale-105 transition-transform duration-300" />
                                     ) : (
                                       <div className="w-10 h-10 bg-gradient-to-br from-[#E21F55] to-[#C01E6C] rounded-lg shadow-sm flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
                                         {/* Generic abstract placeholder for now */}
