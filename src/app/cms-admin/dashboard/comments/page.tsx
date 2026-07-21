@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ConfirmAction } from "@/components/ui/confirm-action";
+import { ActionButton } from "@/components/ui/action-button";
 import { ExpandableText } from "@/components/ui/expandable-text";
 
 const statusStyles: Record<string, string> = {
@@ -94,25 +95,37 @@ export default async function CommentsPage() {
                   <TableCell className="text-right pr-4 align-top py-4">
                     <div className="flex items-center justify-end gap-1">
                       {comment.status !== "APPROVED" && (
-                        <form action={updateCommentStatus.bind(null, comment.id, "APPROVED")}>
-                          <Button type="submit" variant="ghost" size="sm" title="Approve this comment" className="h-7 px-2 text-[11px] text-green-600 hover:text-green-800">
-                            Approve
-                          </Button>
-                        </form>
+                        <ActionButton
+                          action={updateCommentStatus.bind(null, comment.id, "APPROVED")}
+                          variant="ghost"
+                          size="sm"
+                          title="Approve this comment"
+                          className="h-7 px-2 text-[11px] text-green-600 hover:text-green-800"
+                          label="Approve"
+                          loadingLabel="Saving..."
+                        />
                       )}
                       {comment.status === "APPROVED" && (
-                        <form action={updateCommentStatus.bind(null, comment.id, "PENDING")}>
-                          <Button type="submit" variant="ghost" size="sm" title="Revert to pending" className="h-7 px-2 text-[11px] text-slate-600 hover:text-slate-800">
-                            Revert
-                          </Button>
-                        </form>
+                        <ActionButton
+                          action={updateCommentStatus.bind(null, comment.id, "PENDING")}
+                          variant="ghost"
+                          size="sm"
+                          title="Revert to pending"
+                          className="h-7 px-2 text-[11px] text-slate-600 hover:text-slate-800"
+                          label="Revert"
+                          loadingLabel="Saving..."
+                        />
                       )}
                       {comment.status !== "SPAM" && (
-                        <form action={updateCommentStatus.bind(null, comment.id, "SPAM")}>
-                          <Button type="submit" variant="ghost" size="sm" title="Mark as spam" className="h-7 px-2 text-[11px] text-amber-600 hover:text-amber-800">
-                            Spam
-                          </Button>
-                        </form>
+                        <ActionButton
+                          action={updateCommentStatus.bind(null, comment.id, "SPAM")}
+                          variant="ghost"
+                          size="sm"
+                          title="Mark as spam"
+                          className="h-7 px-2 text-[11px] text-amber-600 hover:text-amber-800"
+                          label="Spam"
+                          loadingLabel="Saving..."
+                        />
                       )}
                       <ConfirmAction
                         action={deleteComment.bind(null, comment.id)}
