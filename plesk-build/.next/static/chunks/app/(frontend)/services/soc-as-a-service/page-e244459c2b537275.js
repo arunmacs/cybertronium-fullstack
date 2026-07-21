@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[9016],{40272:(e,s,a)=>{Promise.resolve().then(a.bind(a,41941))},41941:(e,s,a)=>{"use strict";a.d(s,{default:()=>_});var c=a(95155),r=a(15150);let _=()=>(0,c.jsx)(r.A,{serviceId:"soc-as-a-service"})}},e=>{e.O(0,[8237,8409,4119,7181,2132,4388,7774,4577,8441,3794,7358],()=>e(e.s=40272)),_N_E=e.O()}]);

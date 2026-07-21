@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[6527],{12822:(e,s,a)=>{"use strict";a.d(s,{default:()=>r});var c=a(95155),i=a(58833);let r=()=>(0,c.jsx)(i.A,{serviceId:"ciso-as-a-service"})},79541:(e,s,a)=>{Promise.resolve().then(a.bind(a,12822))}},e=>{e.O(0,[8237,6124,8500,7181,1236,9922,7774,1966,8441,3794,7358],()=>e(e.s=79541)),_N_E=e.O()}]);

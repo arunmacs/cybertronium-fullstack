@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[9247],{61606:(e,s,u)=>{Promise.resolve().then(u.bind(u,62003))},62003:(e,s,u)=>{"use strict";u.d(s,{default:()=>t});var c=u(95155),l=u(15150);let t=()=>(0,c.jsx)(l.A,{serviceId:"cloud-security-consulting"})}},e=>{e.O(0,[8237,8409,4119,7181,2132,4388,7774,4577,8441,3794,7358],()=>e(e.s=61606)),_N_E=e.O()}]);

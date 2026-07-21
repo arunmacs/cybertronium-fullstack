@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[6148],{8938:(e,s,r)=>{"use strict";r.d(s,{default:()=>u});var l=r(95155),t=r(15150);let u=()=>(0,l.jsx)(t.A,{serviceId:"red-purple-teaming"})},16319:(e,s,r)=>{Promise.resolve().then(r.bind(r,8938))}},e=>{e.O(0,[8237,8409,4119,7181,2132,4388,7774,4577,8441,3794,7358],()=>e(e.s=16319)),_N_E=e.O()}]);

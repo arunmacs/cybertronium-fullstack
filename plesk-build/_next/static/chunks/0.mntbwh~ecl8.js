@@ -1,1 +1,0 @@
-(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,318024,e=>{"use strict";var c=e.i(843476),i=e.i(69181);e.s(["default",0,()=>(0,c.jsx)(i.default,{serviceId:"governance-risk-and-compliance"})])}]);

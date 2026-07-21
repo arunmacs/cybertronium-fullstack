@@ -1,3 +1,0 @@
-module.exports=[839921,a=>{"use strict";var b=a.i(330074);a.s([],629521),a.i(629521),a.s(["0097ca7f6a5f904623f606a272b3c70bda6a4235ae",()=>b.getProjectName,"00dc6928dad904708ff881a41c2cb004763e4b5490",()=>b.getStorageProviderSetting,"401aa2f89d0a5c61b2453097e0779858e9ee28b7ac",()=>b.updateStorageProviderSetting,"4020a8fee56901144f9b4f2cb2a01f579214eef6a6",()=>b.updateProjectName],839921)}];
-
-//# sourceMappingURL=_next-internal_server_app_cms-admin_dashboard_settings_page_actions_00l119b.js.map

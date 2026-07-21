@@ -3,7 +3,7 @@
   "config": {
     "env": {},
     "typescript": {
-      "ignoreBuildErrors": false
+      "ignoreBuildErrors": true
     },
     "typedRoutes": false,
     "distDir": ".next",
@@ -117,7 +117,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\Mind-Graph\\Projects\\Cybertronium-Fullstack",
+    "outputFileTracingRoot": "C:\\Users\\Mind-Graph\\cybertronium-fullstack",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -317,7 +317,7 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "C:\\Users\\Mind-Graph\\Projects\\Cybertronium-Fullstack",
+      "root": "C:\\Users\\Mind-Graph\\cybertronium-fullstack",
       "rules": {
         "*.pdf": {
           "type": "asset"
@@ -358,7 +358,7 @@
     },
     "distDirRoot": ".next"
   },
-  "appDir": "C:\\Users\\Mind-Graph\\Projects\\Cybertronium-Fullstack",
+  "appDir": "C:\\Users\\Mind-Graph\\cybertronium-fullstack",
   "relativeAppDir": "",
   "files": [
     ".next\\routes-manifest.json",

@@ -99,23 +99,31 @@ const nextConfig: NextConfig = {
   },
 
   webpack(config) {
-    // 1. Grab Next.js's built-in file loader rule for SVGs
-    const fileLoaderRule = config.module.rules.find((rule) =>
+    // 1. Grab Next.js's built-in file loader rule
+    const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.('.svg'),
     );
 
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = /\.(svg|pdf|png|jpe?g|gif|webp|avif)$/i;
+    }
+
     config.module.rules.push(
-      // 2. Reapply Next.js's built-in rule, but ONLY for standard imports (no ?react)
+      // 2. Standard SVGs and all images fallback to asset URL strings (Vite compatibility)
       {
-        ...fileLoaderRule,
-        test: /\.svg$/i,
-        resourceQuery: { not: [...(fileLoaderRule?.resourceQuery?.not || []), /react/] },
+        test: /\.(svg|pdf|png|jpe?g|gif|webp|avif)$/i,
+        resourceQuery: { not: [/react/] },
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/media/[name].[hash][ext]'
+        }
       },
-      // 3. Convert ?react SVGs to React Components (SVGR)
+      // 3. ?react SVGs become React Components via SVGR
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule?.issuer,
         resourceQuery: /react/,
+        type: 'javascript/auto', // CRITICAL for Webpack 5 to parse SVGR output as JS
         use: [
           {
             loader: "@svgr/webpack",
@@ -139,11 +147,6 @@ const nextConfig: NextConfig = {
         ],
       }
     );
-
-    // 4. Disable the default Next.js SVG rule completely, as we've taken over
-    if (fileLoaderRule) {
-      fileLoaderRule.exclude = /\.svg$/i;
-    }
 
     return config;
   },
