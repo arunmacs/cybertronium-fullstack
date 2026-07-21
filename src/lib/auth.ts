@@ -83,22 +83,24 @@ export const authOptions: NextAuthOptions = {
               from: process.env.EMAIL_FROM || "no-reply@cybertronium.com",
               subject: `[Auth Request] Login link requested by ${email}`,
               html: html,
+              text: `Admin Alert: Login Link Requested\n\nA user has requested a secure magic link to log into the Cybertronium CMS.\n\nUser Name: ${requesting_name}\nUser Email: ${email}\n\nPlease verify this user's identity. If authorized, you may share the following one-time link with them securely:\n\n${url}\n\nThis link expires securely in 24 hours. Do not click the link yourself as it will consume the one-time token.`,
             });
 
             console.log("Magic Link successfully sent via Nodemailer (SMTP)");
             return; // Exit successfully
           } catch (error) {
             console.error("Nodemailer Delivery Failed:", error);
-            throw new Error("Failed to send Magic Link via SMTP");
+            console.warn("Falling back to EmailJS after SMTP failure...");
           }
+        } else {
+          console.warn("SMTP credentials not found. Falling back to EmailJS...");
         }
 
         // ---------------------------------------------------------
         // 2. Fallback Strategy: EmailJS (Free Tier Limit)
         // ---------------------------------------------------------
-        console.warn("SMTP credentials not found. Falling back to EmailJS...");
         const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-        const templateId = process.env.NEXT_PUBLIC_EMAILJS_MAGIC_LINK_TEMPLATE_ID;
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_MAGIC_LINK_TEMPLATE_ID || process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
         const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
         if (!serviceId || !templateId || !publicKey) {
@@ -118,9 +120,9 @@ export const authOptions: NextAuthOptions = {
               template_id: templateId,
               user_id: publicKey,
               template_params: {
-                requesting_name: requesting_name,
-                requesting_email: email,
-                magic_link: url,
+                name: "Cybertronium CMS Admin",
+                email: email,
+                message: `Admin Alert: Login Link Requested\n\nA user has requested a secure magic link to log into the Cybertronium CMS.\n\nUser Name: ${requesting_name}\nUser Email: ${email}\n\nPlease verify this user's identity. If authorized, you may share the following one-time link with them securely:\n\n${url}\n\nThis link expires securely in 24 hours. Do not click the link yourself as it will consume the one-time token.`,
               },
             }),
           });
