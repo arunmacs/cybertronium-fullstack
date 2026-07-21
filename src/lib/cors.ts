@@ -4,7 +4,8 @@ export const allowedOrigins = [
   process.env.NEXT_PUBLIC_APP_URL || "https://www.cybertronium.com",
   "http://localhost:3000",
   "http://localhost:8080",
-  "http://49.204.235.145:3001"
+  "http://49.204.235.145:3001",
+  "https://staging.cybertronium.com"
 ];
 
 export function getCorsHeaders(req?: NextRequest | Request | null, methods: string = "GET, POST, OPTIONS") {
