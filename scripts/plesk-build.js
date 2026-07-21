@@ -17,7 +17,11 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = process.cwd();
+const ROOT_RAW = process.cwd();
+const ROOT = (fs.realpathSync && fs.realpathSync.native) ? fs.realpathSync.native(ROOT_RAW) : ROOT_RAW;
+if (ROOT !== ROOT_RAW) {
+  process.chdir(ROOT);
+}
 
 // ── Helpers ──────────────────────────────────────────────────────────
 
@@ -73,6 +77,8 @@ if (fs.existsSync(globalErrorPath)) {
 
 log("🏗️", "STEP 4 — Building with Next.js (Webpack)");
 // Bypass Turbopack bug on single-core by forcing Webpack
+// Set memory limit to prevent OOM on Plesk
+process.env.NODE_OPTIONS = (process.env.NODE_OPTIONS || "") + " --max-old-space-size=4096";
 run("npx next build --webpack");
 
 
