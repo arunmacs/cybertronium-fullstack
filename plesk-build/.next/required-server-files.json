@@ -233,6 +233,15 @@
       "turbopackFileSystemCacheForBuild": false,
       "turbopackInferModuleSideEffects": true,
       "turbopackPluginRuntimeStrategy": "childProcesses",
+      "serverActions": {
+        "allowedOrigins": [
+          "staging.cybertronium.com",
+          "www.cybertronium.com",
+          "cybertronium.com",
+          "localhost:3000",
+          "localhost:8080"
+        ]
+      },
       "optimizePackageImports": [
         "lucide-react",
         "date-fns",
