@@ -70,12 +70,86 @@ if (fs.existsSync(serverJsPath)) {
   // IISNode passes a named pipe string (e.g. \\.\pipe\iisnode-...) via process.env.PORT.
   // Next.js uses parseInt() which turns the pipe string into NaN, causing it to fallback to 3000.
   // We remove parseInt to allow Node's http.listen() to use the named pipe directly.
+  // Patch 1: Fix IISNode named pipe PORT (parseInt breaks named pipes)
   serverJs = serverJs.replace(
     /const currentPort = parseInt\(process\.env\.PORT, 10\) \|\| 3000/g,
     'const currentPort = process.env.PORT || 3000'
   );
+
+  // Patch 2: Fix hardcoded local build machine path in outputFileTracingRoot
+  // Next.js bakes the absolute local path into server.js at build time.
+  // On the Plesk server this path doesn't exist, causing file-tracing to fail.
+  // Replace it with __dirname so it resolves to wherever server.js lives on the server.
+  serverJs = serverJs.replace(
+    /"outputFileTracingRoot":"[^"]*"/g,
+    '"outputFileTracingRoot":__dirname'
+  );
+
+  // Patch 3: Fix turbopack root path (also baked in as absolute local path)
+  serverJs = serverJs.replace(
+    /"root":"[^"]*"(,"rules")/g,
+    '"root":__dirname$1'
+  );
+
   fs.writeFileSync(serverJsPath, serverJs);
+  console.log('  ✓ IISNode port patch applied');
+  console.log('  ✓ outputFileTracingRoot path fixed');
+  console.log('  ✓ turbopack root path fixed');
 }
+
+// 9. Generate web.config for IISNode (CRITICAL for Plesk/IIS on Windows)
+console.log('🌐 Writing web.config for IISNode...');
+const webConfigContent = `<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.webServer>
+    <handlers>
+      <add name="iisnode" path="server.js" verb="*" modules="iisnode" />
+    </handlers>
+    <rewrite>
+      <rules>
+        <rule name="StaticContent" stopProcessing="true">
+          <match url="^(favicon\\.ico|robots\\.txt|site\\.webmanifest|.*\\.(png|jpg|jpeg|gif|webp|avif|svg|ico|css|js|map|woff|woff2|ttf|eot|otf|pdf|mp4|webm))$" />
+          <conditions>
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" />
+          </conditions>
+          <action type="None" />
+        </rule>
+        <rule name="NextJS" stopProcessing="true">
+          <match url=".*" />
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+          </conditions>
+          <action type="Rewrite" url="server.js" />
+        </rule>
+      </rules>
+    </rewrite>
+    <iisnode
+      nodeProcessCommandLine="node"
+      watchedFiles="web.config;server.js"
+      loggingEnabled="true"
+      logDirectory="iisnode-logs"
+      debuggingEnabled="false"
+      maxLogFileSizeInKB="128"
+      maxTotalLogFileSizeInKB="1024"
+      maxLogFiles="5"
+    />
+    <security>
+      <requestFiltering>
+        <hiddenSegments>
+          <add segment="node_modules" />
+          <add segment=".next" />
+          <add segment="iisnode-logs" />
+          <add segment="prisma" />
+        </hiddenSegments>
+        <fileExtensions>
+          <add fileExtension=".env" allowed="false" />
+          <add fileExtension=".ts" allowed="false" />
+        </fileExtensions>
+      </requestFiltering>
+    </security>
+  </system.webServer>
+</configuration>`;
+fs.writeFileSync(path.join(pleskBuildDir, 'web.config'), webConfigContent);
 
 console.log('\n✅ Plesk build ready in ./plesk-build folder!');
 console.log('👉 To test locally exactly like Plesk:');
