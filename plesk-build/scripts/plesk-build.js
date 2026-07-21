@@ -17,7 +17,11 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = process.cwd();
+const ROOT_RAW = process.cwd();
+const ROOT = (fs.realpathSync && fs.realpathSync.native) ? fs.realpathSync.native(ROOT_RAW) : ROOT_RAW;
+if (ROOT !== ROOT_RAW) {
+  process.chdir(ROOT);
+}
 
 // ── Helpers ──────────────────────────────────────────────────────────
 
@@ -61,10 +65,24 @@ removeIfExists("src/app/global-error.tsx.disabled", "global-error.tsx.disabled")
 log("⚙️", "STEP 3 — Generating Prisma client");
 run("npx prisma generate");
 
-// ── Step 4: Run Next.js build (Turbopack) ────────────────────────────
+// ── Step 3.5: Disable global-error.tsx to prevent Next.js worker bug ─
+const globalErrorPath = path.join(ROOT, "src/app/global-error.tsx");
+const globalErrorDisabledPath = path.join(ROOT, "src/app/global-error.tsx.disabled");
+if (fs.existsSync(globalErrorPath)) {
+  log("🔧", "Renaming global-error.tsx to prevent Next.js worker crash...");
+  fs.renameSync(globalErrorPath, globalErrorDisabledPath);
+}
 
-log("🏗️", "STEP 4 — Building with Next.js (Turbopack)");
-run("npx next build --experimental-build-mode=compile");
+// ── Step 4: Run Next.js build (Webpack) ────────────────────────────
+
+log("🏗️", "STEP 4 — Building with Next.js");
+// Use default Next.js bundler (Turbopack in Next.js 16).
+// NOTE: --webpack was removed because it causes next-font-manifest.json to be
+// missing on fresh clean builds (known Next.js 16 webpack bug).
+// The turbopack {} block in next.config.ts handles SVGs/PDFs for Turbopack.
+process.env.NODE_OPTIONS = (process.env.NODE_OPTIONS || "") + " --max-old-space-size=4096";
+run("npx next build");
+
 
 // ── Done ─────────────────────────────────────────────────────────────
 

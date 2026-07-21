@@ -75,11 +75,13 @@ if (fs.existsSync(globalErrorPath)) {
 
 // ── Step 4: Run Next.js build (Webpack) ────────────────────────────
 
-log("🏗️", "STEP 4 — Building with Next.js (Webpack)");
-// Bypass Turbopack bug on single-core by forcing Webpack
-// Set memory limit to prevent OOM on Plesk
+log("🏗️", "STEP 4 — Building with Next.js");
+// Use default Next.js bundler (Turbopack in Next.js 16).
+// NOTE: --webpack was removed because it causes next-font-manifest.json to be
+// missing on fresh clean builds (known Next.js 16 webpack bug).
+// The turbopack {} block in next.config.ts handles SVGs/PDFs for Turbopack.
 process.env.NODE_OPTIONS = (process.env.NODE_OPTIONS || "") + " --max-old-space-size=4096";
-run("npx next build --webpack");
+run("npx next build");
 
 
 // ── Done ─────────────────────────────────────────────────────────────

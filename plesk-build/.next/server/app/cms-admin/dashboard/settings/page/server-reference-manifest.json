@@ -1,18 +1,6 @@
 {
   "node": {
-    "0007d50f0a0ce115b12dbb1e791b59cf71359836f5": {
-      "workers": {
-        "app/cms-admin/dashboard/settings/page": {
-          "moduleId": 839921,
-          "async": false,
-          "exportedName": "getProjectName",
-          "filename": "src/app/actions/setting-actions.ts"
-        }
-      },
-      "exportedName": "getProjectName",
-      "filename": "src/app/actions/setting-actions.ts"
-    },
-    "006e521138f0bd8b5907a773003896b33d2c74df84": {
+    "003d52aa2bd8e2d0ce896970c12e0ef1f3882ffa58": {
       "workers": {
         "app/cms-admin/dashboard/settings/page": {
           "moduleId": 839921,
@@ -24,7 +12,19 @@
       "exportedName": "getStorageProviderSetting",
       "filename": "src/app/actions/setting-actions.ts"
     },
-    "40587c7126d2c260d9af4631b6a54179051e0c09d5": {
+    "0078864e2e49b382ac6afb98addf049e2faea62ed2": {
+      "workers": {
+        "app/cms-admin/dashboard/settings/page": {
+          "moduleId": 839921,
+          "async": false,
+          "exportedName": "getProjectName",
+          "filename": "src/app/actions/setting-actions.ts"
+        }
+      },
+      "exportedName": "getProjectName",
+      "filename": "src/app/actions/setting-actions.ts"
+    },
+    "4089b2feeb110297cf0649951d5bbcfed2d7bdcfa2": {
       "workers": {
         "app/cms-admin/dashboard/settings/page": {
           "moduleId": 839921,
@@ -36,7 +36,7 @@
       "exportedName": "updateProjectName",
       "filename": "src/app/actions/setting-actions.ts"
     },
-    "40b809e092f31323f2e467ea7b3cb5ef638968f5ba": {
+    "40a06275d31f785510bbcd25190bc24ec771e0c257": {
       "workers": {
         "app/cms-admin/dashboard/settings/page": {
           "moduleId": 839921,

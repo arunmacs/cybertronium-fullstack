@@ -9,16 +9,24 @@ const pleskBuildDir = path.join(projectRoot, 'plesk-build');
 console.log('📦 Starting standard Next.js standalone build...');
 execSync('npm run build', { cwd: projectRoot, stdio: 'inherit' });
 
-// 2. Ensure plesk-build directory exists
-console.log('\n🧹 Preparing plesk-build directory...');
-if (!fs.existsSync(pleskBuildDir)) {
-  fs.mkdirSync(pleskBuildDir, { recursive: true });
+// 2. Wipe and recreate plesk-build (avoids stale files and nested plesk-build/plesk-build)
+console.log('\n🧹 Preparing clean plesk-build directory...');
+if (fs.existsSync(pleskBuildDir)) {
+  fs.rmSync(pleskBuildDir, { recursive: true, force: true });
 }
+fs.mkdirSync(pleskBuildDir, { recursive: true });
 
 // 3. Copy .next/standalone to plesk-build
 console.log('📁 Copying standalone build files...');
 const standaloneDir = path.join(projectRoot, '.next', 'standalone');
 fs.cpSync(standaloneDir, pleskBuildDir, { recursive: true });
+
+// 3.1 Remove nested plesk-build copy (Next.js file tracer includes the output folder itself)
+const nestedPleskBuild = path.join(pleskBuildDir, 'plesk-build');
+if (fs.existsSync(nestedPleskBuild)) {
+  fs.rmSync(nestedPleskBuild, { recursive: true, force: true });
+  console.log('  ✓ Removed nested plesk-build/ copy from standalone trace');
+}
 
 // 4. Copy public to plesk-build/public
 console.log('🖼️ Copying public assets...');
