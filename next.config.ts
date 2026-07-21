@@ -27,6 +27,15 @@ const nextConfig: NextConfig = {
   experimental: {
     // Suppress the multiple-lockfiles workspace root warning
     // (we have cms-cybertronium/package-lock.json and a parent package-lock.json)
+    serverActions: {
+      allowedOrigins: [
+        "staging.cybertronium.com",
+        "www.cybertronium.com",
+        "cybertronium.com",
+        "localhost:3000",
+        "localhost:8080"
+      ]
+    }
   },
 
   async headers() {

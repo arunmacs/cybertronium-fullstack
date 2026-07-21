@@ -172,7 +172,7 @@ export function MediaLibrary({ onSelect, isAdmin = false }: { onSelect?: (url: s
       {/* Top Header */}
       <div className="flex flex-wrap justify-between items-center gap-4">
         <h2 className="text-lg font-semibold">Media Library</h2>
-        
+
         <div className="flex items-center gap-2">
           {!selectionMode && isAdmin && (
             <Button variant="outline" size="sm" onClick={() => setSelectionMode(true)}>
@@ -210,19 +210,19 @@ export function MediaLibrary({ onSelect, isAdmin = false }: { onSelect?: (url: s
                 {hasScanned && <span className="bg-green-100 text-green-700 text-[10px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">Scan Complete</span>}
               </h3>
               <p className="text-xs text-slate-500">
-                Total Assets: <strong className="text-slate-900 dark:text-slate-100">{media.length}</strong> 
-                <span className="mx-2">•</span> 
+                Total Assets: <strong className="text-slate-900 dark:text-slate-100">{media.length}</strong>
+                <span className="mx-2">•</span>
                 Total Space Used: <strong className="text-slate-900 dark:text-slate-100">{(totalSize / 1024 / 1024).toFixed(2)} MB</strong>
-                
+
                 {hasScanned && (
                   <>
-                    <span className="mx-2">•</span> 
+                    <span className="mx-2">•</span>
                     Orphaned (Unused): <strong className="text-red-600">{unusedMedia.length} assets ({(unusedSize / 1024 / 1024).toFixed(2)} MB)</strong>
                   </>
                 )}
               </p>
             </div>
-            
+
             {isAdmin && (
               <div className="flex items-center gap-2">
                 {isScanning ? (
@@ -280,15 +280,14 @@ export function MediaLibrary({ onSelect, isAdmin = false }: { onSelect?: (url: s
             const isUnused = hasScanned && asset.isUsed === false;
 
             return (
-              <Card 
-                key={asset.id} 
-                className={`overflow-hidden group flex flex-col relative transition-all ${
-                  isSelected ? "ring-2 ring-indigo-500" : ""
-                } ${isUnused ? "border-red-300 dark:border-red-900/50" : ""}`}
+              <Card
+                key={asset.id}
+                className={`overflow-hidden group flex flex-col relative transition-all ${isSelected ? "ring-2 ring-indigo-500" : ""
+                  } ${isUnused ? "border-red-300 dark:border-red-900/50" : ""}`}
               >
-                
+
                 {selectionMode ? (
-                  <div 
+                  <div
                     className="absolute inset-0 z-20 cursor-pointer"
                     onClick={() => toggleSelection(asset.id)}
                   >
@@ -299,7 +298,7 @@ export function MediaLibrary({ onSelect, isAdmin = false }: { onSelect?: (url: s
                 ) : onSelect ? (
                   <button
                     onClick={() => onSelect(asset.url)}
-                    className="absolute inset-0 z-10 w-full h-full opacity-0 hover:opacity-100 bg-black/50 flex items-center justify-center transition-opacity"
+                    className="absolute inset-0 w-full h-full opacity-0 hover:opacity-100 bg-black/50 flex items-center justify-center transition-opacity"
                   >
                     <span className="text-white font-medium text-sm bg-indigo-600 px-3 py-1.5 rounded-md">Insert</span>
                   </button>
@@ -307,7 +306,7 @@ export function MediaLibrary({ onSelect, isAdmin = false }: { onSelect?: (url: s
 
                 {/* Badge for unused */}
                 {isUnused && !selectionMode && (
-                  <div className="absolute top-2 left-2 z-10 bg-red-100 text-red-700 text-[10px] font-bold px-2 py-0.5 rounded-sm flex items-center shadow-sm">
+                  <div className="absolute top-2 left-2 bg-red-100 text-red-700 text-[10px] font-bold px-2 py-0.5 rounded-sm flex items-center shadow-sm">
                     <ShieldAlert className="w-3 h-3 mr-1" /> Unused
                   </div>
                 )}
@@ -320,8 +319,8 @@ export function MediaLibrary({ onSelect, isAdmin = false }: { onSelect?: (url: s
                     className="max-w-full max-h-full object-contain rounded-sm"
                   />
                 </div>
-                
-                <div className="p-2 border-t text-xs flex flex-col gap-1 bg-white dark:bg-slate-950 relative z-10">
+
+                <div className="p-2 border-t text-xs flex flex-col gap-1 bg-white dark:bg-slate-950 relative">
                   <p className="truncate font-medium" title={asset.filename}>{asset.filename}</p>
                   <div className="flex justify-between items-center text-slate-500">
                     <span>{(asset.size / 1024).toFixed(1)} KB</span>
