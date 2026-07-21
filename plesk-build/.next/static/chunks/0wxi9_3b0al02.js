@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,52766,t=>{"use strict";var e=t.i(843476),c=t.i(69181);t.s(["default",0,()=>(0,e.jsx)(c.default,{serviceId:"cloud-security-consulting"})])}]);

@@ -1,0 +1,531 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://res.cloudinary.com https://avatars.githubusercontent.com https://lh3.googleusercontent.com https://purecatamphetamine.github.io/; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; frame-src 'self' https://www.google.com https://recaptcha.google.com; connect-src 'self' http://localhost:3000 https://www.cybertronium.com https://cybertronium.com https://api.emailjs.com https://docs.google.com; upgrade-insecure-requests;"
+        }
+      ],
+      "regex": "^(?:/(.*))(?:/)?$"
+    }
+  ],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/auth/[...nextauth]",
+      "regex": "^/api/auth/(.+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPnextauth": "nxtPnextauth"
+      },
+      "namedRegex": "^/api/auth/(?<nxtPnextauth>.+?)(?:/)?$"
+    },
+    {
+      "page": "/api/media/[id]",
+      "regex": "^/api/media/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/media/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/v1/posts/[slug]",
+      "regex": "^/api/v1/posts/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/api/v1/posts/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/v1/posts/[slug]/comments",
+      "regex": "^/api/v1/posts/([^/]+?)/comments(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/api/v1/posts/(?<nxtPslug>[^/]+?)/comments(?:/)?$"
+    },
+    {
+      "page": "/blog/[slug]",
+      "regex": "^/blog/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/blog/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard/posts/[id]",
+      "regex": "^/cms\\-admin/dashboard/posts/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/cms\\-admin/dashboard/posts/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about-us",
+      "regex": "^/about\\-us(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about\\-us(?:/)?$"
+    },
+    {
+      "page": "/agenticaisoc",
+      "regex": "^/agenticaisoc(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agenticaisoc(?:/)?$"
+    },
+    {
+      "page": "/api/media",
+      "regex": "^/api/media(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/media(?:/)?$"
+    },
+    {
+      "page": "/api/upload",
+      "regex": "^/api/upload(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/upload(?:/)?$"
+    },
+    {
+      "page": "/api/v1/posts",
+      "regex": "^/api/v1/posts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/posts(?:/)?$"
+    },
+    {
+      "page": "/api/v1/tags",
+      "regex": "^/api/v1/tags(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/v1/tags(?:/)?$"
+    },
+    {
+      "page": "/blogs",
+      "regex": "^/blogs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blogs(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard",
+      "regex": "^/cms\\-admin/dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/dashboard(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard/comments",
+      "regex": "^/cms\\-admin/dashboard/comments(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/dashboard/comments(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard/media",
+      "regex": "^/cms\\-admin/dashboard/media(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/dashboard/media(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard/posts",
+      "regex": "^/cms\\-admin/dashboard/posts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/dashboard/posts(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard/posts/new",
+      "regex": "^/cms\\-admin/dashboard/posts/new(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/dashboard/posts/new(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard/profile",
+      "regex": "^/cms\\-admin/dashboard/profile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/dashboard/profile(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard/settings",
+      "regex": "^/cms\\-admin/dashboard/settings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/dashboard/settings(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/dashboard/users",
+      "regex": "^/cms\\-admin/dashboard/users(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/dashboard/users(?:/)?$"
+    },
+    {
+      "page": "/cms-admin/login",
+      "regex": "^/cms\\-admin/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cms\\-admin/login(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/ctem",
+      "regex": "^/ctem(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ctem(?:/)?$"
+    },
+    {
+      "page": "/email-security",
+      "regex": "^/email\\-security(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/email\\-security(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/privacy-policy",
+      "regex": "^/privacy\\-policy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy\\-policy(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/services",
+      "regex": "^/services(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services(?:/)?$"
+    },
+    {
+      "page": "/services/ai-security",
+      "regex": "^/services/ai\\-security(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/ai\\-security(?:/)?$"
+    },
+    {
+      "page": "/services/app-security-services",
+      "regex": "^/services/app\\-security\\-services(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/app\\-security\\-services(?:/)?$"
+    },
+    {
+      "page": "/services/ciso-as-a-service",
+      "regex": "^/services/ciso\\-as\\-a\\-service(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/ciso\\-as\\-a\\-service(?:/)?$"
+    },
+    {
+      "page": "/services/cloud-detection-response",
+      "regex": "^/services/cloud\\-detection\\-response(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/cloud\\-detection\\-response(?:/)?$"
+    },
+    {
+      "page": "/services/cloud-security-consulting",
+      "regex": "^/services/cloud\\-security\\-consulting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/cloud\\-security\\-consulting(?:/)?$"
+    },
+    {
+      "page": "/services/cloud-security-posture-management",
+      "regex": "^/services/cloud\\-security\\-posture\\-management(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/cloud\\-security\\-posture\\-management(?:/)?$"
+    },
+    {
+      "page": "/services/compromise-assessment",
+      "regex": "^/services/compromise\\-assessment(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/compromise\\-assessment(?:/)?$"
+    },
+    {
+      "page": "/services/cybersecurity-maturity-assessment",
+      "regex": "^/services/cybersecurity\\-maturity\\-assessment(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/cybersecurity\\-maturity\\-assessment(?:/)?$"
+    },
+    {
+      "page": "/services/cybertron",
+      "regex": "^/services/cybertron(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/cybertron(?:/)?$"
+    },
+    {
+      "page": "/services/digital-forensics-incident-response",
+      "regex": "^/services/digital\\-forensics\\-incident\\-response(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/digital\\-forensics\\-incident\\-response(?:/)?$"
+    },
+    {
+      "page": "/services/firmware-security",
+      "regex": "^/services/firmware\\-security(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/firmware\\-security(?:/)?$"
+    },
+    {
+      "page": "/services/governance-risk-compliance",
+      "regex": "^/services/governance\\-risk\\-compliance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/governance\\-risk\\-compliance(?:/)?$"
+    },
+    {
+      "page": "/services/managed-security-awareness",
+      "regex": "^/services/managed\\-security\\-awareness(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/managed\\-security\\-awareness(?:/)?$"
+    },
+    {
+      "page": "/services/mobile-threat-defense",
+      "regex": "^/services/mobile\\-threat\\-defense(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/mobile\\-threat\\-defense(?:/)?$"
+    },
+    {
+      "page": "/services/penetration-testing",
+      "regex": "^/services/penetration\\-testing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/penetration\\-testing(?:/)?$"
+    },
+    {
+      "page": "/services/red-purple-teaming",
+      "regex": "^/services/red\\-purple\\-teaming(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/red\\-purple\\-teaming(?:/)?$"
+    },
+    {
+      "page": "/services/secure-digital-transformation",
+      "regex": "^/services/secure\\-digital\\-transformation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/secure\\-digital\\-transformation(?:/)?$"
+    },
+    {
+      "page": "/services/soc-as-a-service",
+      "regex": "^/services/soc\\-as\\-a\\-service(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/soc\\-as\\-a\\-service(?:/)?$"
+    },
+    {
+      "page": "/services/soc-for-enterprise",
+      "regex": "^/services/soc\\-for\\-enterprise(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/soc\\-for\\-enterprise(?:/)?$"
+    },
+    {
+      "page": "/services/soc-for-sme",
+      "regex": "^/services/soc\\-for\\-sme(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/soc\\-for\\-sme(?:/)?$"
+    },
+    {
+      "page": "/services/strategy-consulting",
+      "regex": "^/services/strategy\\-consulting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/strategy\\-consulting(?:/)?$"
+    },
+    {
+      "page": "/services/vulnerability-assessment",
+      "regex": "^/services/vulnerability\\-assessment(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/vulnerability\\-assessment(?:/)?$"
+    },
+    {
+      "page": "/services/zero-trust-implementation",
+      "regex": "^/services/zero\\-trust\\-implementation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/zero\\-trust\\-implementation(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/terms-of-use",
+      "regex": "^/terms\\-of\\-use(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms\\-of\\-use(?:/)?$"
+    },
+    {
+      "page": "/trainings",
+      "regex": "^/trainings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-cloud-security-professional",
+      "regex": "^/trainings/certified\\-cloud\\-security\\-professional(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-cloud\\-security\\-professional(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-cyber-threat-intelligence-analyst",
+      "regex": "^/trainings/certified\\-cyber\\-threat\\-intelligence\\-analyst(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-cyber\\-threat\\-intelligence\\-analyst(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-experiential-cybersecurity-aware-user",
+      "regex": "^/trainings/certified\\-experiential\\-cybersecurity\\-aware\\-user(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-experiential\\-cybersecurity\\-aware\\-user(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-penetration-tester",
+      "regex": "^/trainings/certified\\-penetration\\-tester(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-penetration\\-tester(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-red-team-professional",
+      "regex": "^/trainings/certified\\-red\\-team\\-professional(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-red\\-team\\-professional(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-secure-developer",
+      "regex": "^/trainings/certified\\-secure\\-developer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-secure\\-developer(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-security-aware-cxo",
+      "regex": "^/trainings/certified\\-security\\-aware\\-cxo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-security\\-aware\\-cxo(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-security-aware-user",
+      "regex": "^/trainings/certified\\-security\\-aware\\-user(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-security\\-aware\\-user(?:/)?$"
+    },
+    {
+      "page": "/trainings/certified-soc-analyst",
+      "regex": "^/trainings/certified\\-soc\\-analyst(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/certified\\-soc\\-analyst(?:/)?$"
+    },
+    {
+      "page": "/trainings/globalace",
+      "regex": "^/trainings/globalace(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/globalace(?:/)?$"
+    },
+    {
+      "page": "/trainings/globalace-framework",
+      "regex": "^/trainings/globalace\\-framework(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/globalace\\-framework(?:/)?$"
+    },
+    {
+      "page": "/trainings/iso-17024",
+      "regex": "^/trainings/iso\\-17024(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/iso\\-17024(?:/)?$"
+    },
+    {
+      "page": "/trainings/mitre-attck",
+      "regex": "^/trainings/mitre\\-attck(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/mitre\\-attck(?:/)?$"
+    },
+    {
+      "page": "/trainings/nist-nice",
+      "regex": "^/trainings/nist\\-nice(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/nist\\-nice(?:/)?$"
+    },
+    {
+      "page": "/trainings/skillsfuture-sg",
+      "regex": "^/trainings/skillsfuture\\-sg(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/trainings/skillsfuture\\-sg(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

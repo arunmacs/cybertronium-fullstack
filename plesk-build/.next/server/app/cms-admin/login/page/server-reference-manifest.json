@@ -1,0 +1,17 @@
+{
+  "node": {
+    "0007d50f0a0ce115b12dbb1e791b59cf71359836f5": {
+      "workers": {
+        "app/cms-admin/login/page": {
+          "moduleId": 957707,
+          "async": false,
+          "exportedName": "getProjectName",
+          "filename": "src/app/actions/setting-actions.ts"
+        }
+      },
+      "exportedName": "getProjectName",
+      "filename": "src/app/actions/setting-actions.ts"
+    }
+  },
+  "edge": {}
+}

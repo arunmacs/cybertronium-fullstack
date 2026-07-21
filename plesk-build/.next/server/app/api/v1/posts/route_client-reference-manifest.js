@@ -1,0 +1,1 @@
+globalThis.__RSC_MANIFEST=(globalThis.__RSC_MANIFEST||{});globalThis.__RSC_MANIFEST["/api/v1/posts/route"]={"moduleLoading":{"prefix":"/_next/"},"ssrModuleMapping":{},"edgeSSRModuleMapping":{},"clientModules":{},"entryCSSFiles":{"C:\\Users\\Mind-Graph\\cybertronium-fullstack\\src\\app\\api\\v1\\posts\\route":[]},"rscModuleMapping":{},"edgeRscModuleMapping":{}};

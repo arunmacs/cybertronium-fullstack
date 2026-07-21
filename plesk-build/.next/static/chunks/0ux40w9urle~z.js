@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,205383,e=>{"use strict";var i=e.i(843476),s=e.i(69181);e.s(["default",0,()=>(0,i.jsx)(s.default,{serviceId:"digital-forensics-and-incident-response"})])}]);

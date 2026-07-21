@@ -1,0 +1,22 @@
+User-Agent: Googlebot
+Allow: /
+Disallow: /cms-admin/
+Disallow: /api/
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /cms-admin/
+Disallow: /api/
+
+User-Agent: Twitterbot
+Allow: /
+
+User-Agent: facebookexternalhit
+Allow: /
+
+User-Agent: *
+Allow: /
+Disallow: /cms-admin/
+Disallow: /api/
+
+Sitemap: https://www.cybertronium.com/sitemap.xml
