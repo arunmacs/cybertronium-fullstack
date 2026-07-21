@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,786471,e=>{"use strict";var t=e.i(843476),o=e.i(69181);e.s(["default",0,()=>(0,t.jsx)(o.default,{serviceId:"cloud-detection-response"})])}]);

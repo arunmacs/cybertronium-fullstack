@@ -28,15 +28,23 @@ if (fs.existsSync(nestedPleskBuild)) {
   console.log('  ✓ Removed nested plesk-build/ copy from standalone trace');
 }
 
-// 4. Copy public to plesk-build/public
+// 4. Copy public folder (Next.js server.js looks here)
 console.log('🖼️ Copying public assets...');
 const publicDir = path.join(projectRoot, 'public');
-fs.cpSync(publicDir, path.join(pleskBuildDir, 'public'), { recursive: true });
+if (fs.existsSync(publicDir)) {
+  fs.cpSync(publicDir, path.join(pleskBuildDir, 'public'), { recursive: true });
+  // ALSO copy public contents to the root so IIS can serve them directly (IsFile=true)
+  fs.cpSync(publicDir, pleskBuildDir, { recursive: true });
+}
 
-// 5. Copy .next/static to plesk-build/.next/static
+// 5. Copy .next/static (Next.js server.js looks here)
 console.log('✨ Copying static assets...');
 const staticDir = path.join(projectRoot, '.next', 'static');
-fs.cpSync(staticDir, path.join(pleskBuildDir, '.next', 'static'), { recursive: true });
+if (fs.existsSync(staticDir)) {
+  fs.cpSync(staticDir, path.join(pleskBuildDir, '.next', 'static'), { recursive: true });
+  // ALSO copy to _next/static so IIS can serve them directly, avoiding the dot-folder block
+  fs.cpSync(staticDir, path.join(pleskBuildDir, '_next', 'static'), { recursive: true });
+}
 
 // 6. Copy Prisma Client (Next.js standalone often misses engines and schemas)
 console.log('🗄️ Copying Prisma generated files...');

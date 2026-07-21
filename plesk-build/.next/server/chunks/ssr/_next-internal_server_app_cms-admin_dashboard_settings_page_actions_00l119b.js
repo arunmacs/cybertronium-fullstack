@@ -1,3 +1,3 @@
-module.exports=[839921,a=>{"use strict";var b=a.i(330074);a.s([],629521),a.i(629521),a.s(["00215138888c7327d3b813043c52ed312638a91a9a",()=>b.getProjectName,"00c503693db047c195bb19a673928a59611bd6865a",()=>b.getStorageProviderSetting,"4011b1b9fd9dd53e11f9a6fdddfc820d40a4ac157e",()=>b.updateProjectName,"40464aec5bbc06c8a2f0a7ac5152f63395b892606b",()=>b.updateStorageProviderSetting],839921)}];
+module.exports=[839921,a=>{"use strict";var b=a.i(330074);a.s([],629521),a.i(629521),a.s(["00170f4b1e2eb508b40738cc7720c0856cc6428215",()=>b.getStorageProviderSetting,"00843d257ca13c043e76611e1b5f53a22669a42780",()=>b.getProjectName,"4044dcedeb7f60a5586cc7f5e1eb67ba507c23b0e0",()=>b.updateStorageProviderSetting,"405bdd984a92240cccf72d10cb88f1e5c49a84fc25",()=>b.updateProjectName],839921)}];
 
 //# sourceMappingURL=_next-internal_server_app_cms-admin_dashboard_settings_page_actions_00l119b.js.map

@@ -1,18 +1,6 @@
 {
   "node": {
-    "00215138888c7327d3b813043c52ed312638a91a9a": {
-      "workers": {
-        "app/cms-admin/dashboard/settings/page": {
-          "moduleId": 839921,
-          "async": false,
-          "exportedName": "getProjectName",
-          "filename": "src/app/actions/setting-actions.ts"
-        }
-      },
-      "exportedName": "getProjectName",
-      "filename": "src/app/actions/setting-actions.ts"
-    },
-    "00c503693db047c195bb19a673928a59611bd6865a": {
+    "00170f4b1e2eb508b40738cc7720c0856cc6428215": {
       "workers": {
         "app/cms-admin/dashboard/settings/page": {
           "moduleId": 839921,
@@ -24,19 +12,19 @@
       "exportedName": "getStorageProviderSetting",
       "filename": "src/app/actions/setting-actions.ts"
     },
-    "4011b1b9fd9dd53e11f9a6fdddfc820d40a4ac157e": {
+    "00843d257ca13c043e76611e1b5f53a22669a42780": {
       "workers": {
         "app/cms-admin/dashboard/settings/page": {
           "moduleId": 839921,
           "async": false,
-          "exportedName": "updateProjectName",
+          "exportedName": "getProjectName",
           "filename": "src/app/actions/setting-actions.ts"
         }
       },
-      "exportedName": "updateProjectName",
+      "exportedName": "getProjectName",
       "filename": "src/app/actions/setting-actions.ts"
     },
-    "40464aec5bbc06c8a2f0a7ac5152f63395b892606b": {
+    "4044dcedeb7f60a5586cc7f5e1eb67ba507c23b0e0": {
       "workers": {
         "app/cms-admin/dashboard/settings/page": {
           "moduleId": 839921,
@@ -46,6 +34,18 @@
         }
       },
       "exportedName": "updateStorageProviderSetting",
+      "filename": "src/app/actions/setting-actions.ts"
+    },
+    "405bdd984a92240cccf72d10cb88f1e5c49a84fc25": {
+      "workers": {
+        "app/cms-admin/dashboard/settings/page": {
+          "moduleId": 839921,
+          "async": false,
+          "exportedName": "updateProjectName",
+          "filename": "src/app/actions/setting-actions.ts"
+        }
+      },
+      "exportedName": "updateProjectName",
       "filename": "src/app/actions/setting-actions.ts"
     }
   },

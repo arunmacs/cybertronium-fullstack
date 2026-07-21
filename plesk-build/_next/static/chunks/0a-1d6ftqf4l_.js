@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,382212,e=>{"use strict";var s=e.i(843476),t=e.i(69181);e.s(["default",0,()=>(0,s.jsx)(t.default,{serviceId:"app-security-services"})])}]);
