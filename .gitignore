@@ -42,6 +42,5 @@ next-env.d.ts
 
 /src/generated/prisma
 
-plesk-build/node_modules
 *.zip
 archive.zip
