@@ -1,6 +1,6 @@
 {
   "node": {
-    "00b8e2110e3c7cc3062180cf811b18f292cdd024d5": {
+    "00e3c451932e7a1633bb680584825e0d5d64434e6b": {
       "workers": {
         "app/cms-admin/dashboard/posts/page": {
           "moduleId": 895025,
@@ -12,7 +12,7 @@
       "exportedName": "getProjectName",
       "filename": "src/app/actions/setting-actions.ts"
     },
-    "00e98384562af7c899d70cb86b417be032d160e4e6": {
+    "00e46ad63c52a97d1c1f285ce51eda5ee49348b4ce": {
       "workers": {
         "app/cms-admin/dashboard/posts/page": {
           "moduleId": 895025,
@@ -24,19 +24,7 @@
       "exportedName": "getStorageProviderSetting",
       "filename": "src/app/actions/setting-actions.ts"
     },
-    "406f382ba5cfce8e505ee0af4d58dc41cff8aeeae3": {
-      "workers": {
-        "app/cms-admin/dashboard/posts/page": {
-          "moduleId": 895025,
-          "async": false,
-          "exportedName": "updateStorageProviderSetting",
-          "filename": "src/app/actions/setting-actions.ts"
-        }
-      },
-      "exportedName": "updateStorageProviderSetting",
-      "filename": "src/app/actions/setting-actions.ts"
-    },
-    "40c0a11fa0a02f9b216576607a756ae5b2b59d5d65": {
+    "404f646eb4709636e842648ad6549bafae491df640": {
       "workers": {
         "app/cms-admin/dashboard/posts/page": {
           "moduleId": 895025,
@@ -48,7 +36,19 @@
       "exportedName": "updateProjectName",
       "filename": "src/app/actions/setting-actions.ts"
     },
-    "4026d677a585d290dcf705f8b7a2de95912687481b": {
+    "40fd5b3219a7826fa37a2f6aab3368cf098c338b74": {
+      "workers": {
+        "app/cms-admin/dashboard/posts/page": {
+          "moduleId": 895025,
+          "async": false,
+          "exportedName": "updateStorageProviderSetting",
+          "filename": "src/app/actions/setting-actions.ts"
+        }
+      },
+      "exportedName": "updateStorageProviderSetting",
+      "filename": "src/app/actions/setting-actions.ts"
+    },
+    "40abea150fed221ef95243bd8ed6980a9d3f4bcff3": {
       "workers": {
         "app/cms-admin/dashboard/posts/page": {
           "moduleId": 895025,
@@ -60,7 +60,7 @@
       "exportedName": "deletePost",
       "filename": "src/app/actions/post-actions.ts"
     },
-    "409ea4acace44baf2699d2b12f7d9c1cc033f57443": {
+    "40b4fbea68072dd2ca7ce4f8ebd83c03ff05701d96": {
       "workers": {
         "app/cms-admin/dashboard/posts/page": {
           "moduleId": 895025,
@@ -72,7 +72,7 @@
       "exportedName": "createPost",
       "filename": "src/app/actions/post-actions.ts"
     },
-    "60f32665fb115a410bceeb35473bd14b5243225ae7": {
+    "6059030a03b25b314b49d9db2e8c39e9c6de140abb": {
       "workers": {
         "app/cms-admin/dashboard/posts/page": {
           "moduleId": 895025,

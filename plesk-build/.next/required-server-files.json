@@ -319,9 +319,6 @@
     "turbopack": {
       "root": "C:\\Users\\Mind-Graph\\cybertronium-fullstack",
       "rules": {
-        "*.pdf": {
-          "type": "asset"
-        },
         "*.svg": [
           {
             "loaders": [
@@ -347,7 +344,28 @@
             ],
             "as": "*.js"
           }
-        ]
+        ],
+        "*.png": {
+          "type": "asset"
+        },
+        "*.jpg": {
+          "type": "asset"
+        },
+        "*.jpeg": {
+          "type": "asset"
+        },
+        "*.webp": {
+          "type": "asset"
+        },
+        "*.avif": {
+          "type": "asset"
+        },
+        "*.gif": {
+          "type": "asset"
+        },
+        "*.pdf": {
+          "type": "asset"
+        }
       }
     },
     "distDirRoot": ".next"

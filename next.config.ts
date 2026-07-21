@@ -62,9 +62,8 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
     rules: {
-      "*.pdf": {
-        type: "asset",
-      },
+      // All SVG imports → SVGR React components.
+      // Use as: <Logo className="..." /> NOT <img src={logo} />
       "*.svg": [
         {
           loaders: [
@@ -76,11 +75,7 @@ const nextConfig: NextConfig = {
                   plugins: [
                     {
                       name: "preset-default",
-                      params: {
-                        overrides: {
-                          removeViewBox: false,
-                        },
-                      },
+                      params: { overrides: { removeViewBox: false } },
                     },
                     "prefixIds",
                   ],
@@ -91,20 +86,27 @@ const nextConfig: NextConfig = {
           as: "*.js",
         },
       ],
+      // Image formats → static URL strings
+      "*.png":  { type: "asset" },
+      "*.jpg":  { type: "asset" },
+      "*.jpeg": { type: "asset" },
+      "*.webp": { type: "asset" },
+      "*.avif": { type: "asset" },
+      "*.gif":  { type: "asset" },
+      "*.pdf":  { type: "asset" },
     },
   },
 
   webpack(config) {
-    // 1. Convert PDFs and images to URLs (Vite default behavior)
+    // Images → URL strings
     config.module.rules.push({
-      test: /\.(pdf|png|jpe?g|gif|webp|avif)$/i,
-      type: 'asset/resource',
-      generator: {
-        filename: 'static/media/[name].[hash][ext]'
-      }
+      test: /\.(png|jpe?g|gif|webp|avif|pdf)$/i,
+      type: "asset/resource",
+      generator: { filename: "static/media/[name].[hash][ext]" },
     });
 
-    // 2. Convert ALL SVGs to React Components (SVGR behavior)
+    // All SVGs → SVGR React components (same as Turbopack above)
+    // Use as: <Logo className="..." /> NOT <img src={logo} />
     config.module.rules.push({
       test: /\.svg$/i,
       use: [
@@ -115,22 +117,20 @@ const nextConfig: NextConfig = {
             svgoConfig: {
               plugins: [
                 {
-                  name: 'preset-default',
-                  params: {
-                    overrides: {
-                      removeViewBox: false,
-                    },
-                  },
+                  name: "preset-default",
+                  params: { overrides: { removeViewBox: false } },
                 },
-                'prefixIds'
+                "prefixIds",
               ],
             },
           },
         },
       ],
     });
+
     return config;
   },
+
 };
 
 export default nextConfig;
