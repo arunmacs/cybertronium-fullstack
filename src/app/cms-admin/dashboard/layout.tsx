@@ -42,14 +42,14 @@ export default async function DashboardLayout({
 
           {/* Main Content */}
           <main className="flex-1 overflow-auto flex flex-col min-w-0">
-            <header className="h-11 border-b border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-black/40 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-4 lg:px-5 shrink-0">
+            {/* Mobile Nav Toggle */}
+            {/* <header className="h-11 border-b border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-black/40 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-4 lg:px-5 shrink-0">
               <div className="flex items-center">
-                {/* Mobile Nav Toggle */}
                 <MobileNav>
                   <DashboardSidebar {...sidebarProps} />
                 </MobileNav>
               </div>
-            </header>
+            </header> */}
             <div className="p-2 lg:p-4 max-w-7xl mx-auto w-full">
               <GlobalErrorBanner />
               {children}

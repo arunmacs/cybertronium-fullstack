@@ -59,6 +59,36 @@ const PostTags = ({ tags }: { tags: { slug: string; name: string }[] }) => {
   );
 };
 
+const generateFallbackThumbnail = (title: string) => {
+  const firstLetter = (title || "B").charAt(0).toUpperCase();
+  const svg = `
+    <svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#461148" />
+          <stop offset="100%" stop-color="#C01E6C" />
+        </linearGradient>
+        <filter id="shadow">
+          <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.2"/>
+        </filter>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#bg)" />
+      
+      <!-- Decorative Elements -->
+      <circle cx="100" cy="50" r="150" fill="#ffffff" opacity="0.05" />
+      <circle cx="700" cy="350" r="200" fill="#ffffff" opacity="0.05" />
+      
+      <!-- Main Content -->
+      <g filter="url(#shadow)">
+        <rect x="340" y="140" width="120" height="120" rx="30" fill="#ffffff" opacity="0.1" />
+        <text x="400" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="72" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-2">${firstLetter}</text>
+      </g>
+    </svg>
+  `.trim().replace(/\s+/g, ' ');
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+};
+
 const Blogs = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
@@ -231,7 +261,7 @@ const Blogs = () => {
                   <div className="w-full h-[150px] relative">
                     <SmartImage
                       src={post.thumbnailImage || post.coverImage}
-                      fallbackSrc={`https://placehold.co/800x250/FDF0F5/C01E6C?text=${encodeURIComponent(post.title.substring(0, 20))}...`}
+                      fallbackSrc={generateFallbackThumbnail(post.title)}
                       alt={post.title}
                     />
                   </div>
