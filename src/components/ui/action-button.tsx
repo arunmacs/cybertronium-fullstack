@@ -3,6 +3,8 @@
 import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { toast } from "@/components/ui/sonner";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 interface ActionButtonProps extends Omit<React.ComponentProps<typeof Button>, "onClick"> {
   action: () => Promise<any>;
@@ -28,8 +30,12 @@ export function ActionButton({
       try {
         await action();
       } catch (error) {
+        // Let Next.js handle its own redirect errors (e.g. session expiry → login)
+        if (isRedirectError(error)) throw error;
         console.error("Action failed:", error);
-        alert("An error occurred while performing this action. Please check the console or try again later.");
+        toast.error("Action failed", {
+          description: "Something went wrong while performing this action. Please try again.",
+        });
       }
     });
   };
@@ -50,3 +56,4 @@ export function ActionButton({
     </Button>
   );
 }
+

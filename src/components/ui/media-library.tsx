@@ -295,13 +295,6 @@ export function MediaLibrary({ onSelect, isAdmin = false }: { onSelect?: (url: s
                       {isSelected && <Check className="w-3 h-3 text-indigo-500" />}
                     </div>
                   </div>
-                ) : onSelect ? (
-                  <button
-                    onClick={() => onSelect(asset.url)}
-                    className="absolute inset-0 w-full h-full opacity-0 hover:opacity-100 bg-black/50 flex items-center justify-center transition-opacity"
-                  >
-                    <span className="text-white font-medium text-sm bg-indigo-600 px-3 py-1.5 rounded-md">Insert</span>
-                  </button>
                 ) : null}
 
                 {/* Badge for unused */}
@@ -311,13 +304,23 @@ export function MediaLibrary({ onSelect, isAdmin = false }: { onSelect?: (url: s
                   </div>
                 )}
 
-                <div className={`aspect-square bg-slate-50 dark:bg-slate-900/50 relative p-2 flex items-center justify-center ${isSelected ? "opacity-80" : ""}`}>
+                <div className={`aspect-square bg-slate-50 dark:bg-slate-900/50 relative flex items-center justify-center ${isSelected ? "opacity-80" : ""}`}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={asset.url}
                     alt={asset.filename}
-                    className="max-w-full max-h-full object-contain rounded-sm"
+                    className="max-w-full max-h-full object-contain rounded-sm relative z-0"
                   />
+                  {onSelect && !selectionMode && (
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 bg-black/40 z-10">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); e.preventDefault(); onSelect(asset.url); }}
+                        className="text-white font-medium text-sm bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md shadow-sm transform scale-95 group-hover:scale-100 transition-transform duration-200"
+                      >
+                        Insert
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-2 border-t text-xs flex flex-col gap-1 bg-white dark:bg-slate-950 relative">

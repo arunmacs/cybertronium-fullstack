@@ -13,12 +13,12 @@ interface SmartImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
  * SmartImage handles URL resolution for images hosted on the CMS backend vs CDN.
  * It also provides graceful fallbacks and loading states.
  */
-const SmartImage: React.FC<SmartImageProps> = ({ 
-  src, 
-  fallbackSrc = "https://placehold.co/800x400/eee/999?text=Image+Unavailable", 
-  className = "", 
-  alt = "Image", 
-  ...props 
+const SmartImage: React.FC<SmartImageProps> = ({
+  src,
+  fallbackSrc = "https://placehold.co/800x400/eee/999?text=Image+Unavailable",
+  className = "",
+  alt = "Image",
+  ...props
 }) => {
   const [error, setError] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -41,11 +41,11 @@ const SmartImage: React.FC<SmartImageProps> = ({
       {!loaded && !error && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse" />
       )}
-      
+
       <img
         src={finalSrc}
         alt={alt}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${loaded || error ? 'opacity-100' : 'opacity-0'} ${className}`}
+        className={`w-full h-[150px] object-cover transition-opacity duration-300 ${loaded || error ? 'opacity-100' : 'opacity-0'} ${className}`}
         loading="lazy"
         decoding="async"
         onLoad={() => setLoaded(true)}

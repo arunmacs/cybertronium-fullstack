@@ -6,6 +6,7 @@ import { LayoutDashboard, FileText, MessageSquare, Settings, Users, LogOut, Brie
 import { SignOutButton } from "@/components/ui/sign-out-button";
 import { prisma } from "@/lib/prisma";
 import { GlobalErrorBanner } from "@/components/ui/global-error-banner";
+import { Toaster } from "@/components/ui/sonner";
 import { getProjectName } from "@/app/actions/setting-actions";
 
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
@@ -31,29 +32,32 @@ export default async function DashboardLayout({
   const sidebarProps = { dbUser, session, projectName };
 
   return (
-    <SessionProvider>
-      <div className="flex h-screen bg-slate-50 dark:bg-[#0c0c0e]">
-        <BfCacheListener />
-        <ClientAuthGuard />
-        {/* Sidebar - Desktop */}
-        <DashboardSidebar {...sidebarProps} className="hidden lg:flex" />
+    <>
+      <SessionProvider>
+        <div className="flex h-screen bg-slate-50 dark:bg-[#0c0c0e]">
+          <BfCacheListener />
+          <ClientAuthGuard />
+          {/* Sidebar - Desktop */}
+          <DashboardSidebar {...sidebarProps} className="hidden lg:flex" />
 
-        {/* Main Content */}
-        <main className="flex-1 overflow-auto flex flex-col min-w-0">
-          <header className="h-11 border-b border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-black/40 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-4 lg:px-5 shrink-0">
-            <div className="flex items-center">
-              {/* Mobile Nav Toggle */}
-              <MobileNav>
-                <DashboardSidebar {...sidebarProps} />
-              </MobileNav>
+          {/* Main Content */}
+          <main className="flex-1 overflow-auto flex flex-col min-w-0">
+            <header className="h-11 border-b border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-black/40 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-4 lg:px-5 shrink-0">
+              <div className="flex items-center">
+                {/* Mobile Nav Toggle */}
+                <MobileNav>
+                  <DashboardSidebar {...sidebarProps} />
+                </MobileNav>
+              </div>
+            </header>
+            <div className="p-2 lg:p-4 max-w-7xl mx-auto w-full">
+              <GlobalErrorBanner />
+              {children}
             </div>
-          </header>
-          <div className="p-2 lg:p-4 max-w-7xl mx-auto w-full">
-            <GlobalErrorBanner />
-            {children}
-          </div>
-        </main>
-      </div>
-    </SessionProvider>
+          </main>
+        </div>
+      </SessionProvider>
+      <Toaster position="bottom-right" richColors closeButton />
+    </>
   );
 }

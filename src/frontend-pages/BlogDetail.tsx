@@ -13,6 +13,7 @@ import { usePost, usePosts } from "@/hooks/usePosts";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
 import SmartImage from "@/components/ui/SmartImage";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import SEOUpdater from "@/components/SEOUpdater";
 import TableOfContents from "@/components/TableOfContents";
 import Comments from "@/components/Comments";
@@ -257,13 +258,12 @@ const BlogDetail = () => {
                 >
                   {/* Author Info Card */}
                   <div className="flex items-center gap-4 bg-[#F8F9FB] p-4 sm:p-3 rounded-[20px] border border-gray-100 mb-3">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-white shrink-0 shadow-sm">
-                      <SmartImage
-                        src={post.author?.image}
-                        fallbackSrc="https://i.pravatar.cc/150?img=11"
-                        alt={post.author?.name || "Author"}
-                      />
-                    </div>
+                    <Avatar className="w-14 h-14 sm:w-16 sm:h-16 border-2 border-white shadow-sm shrink-0">
+                      <AvatarImage src={post.author?.image || undefined} alt={post.author?.name || "Author"} className="object-cover" />
+                      <AvatarFallback className="bg-[#FDF0F5] text-[#C01E6C] font-semibold text-xl sm:text-2xl border border-[#F9D6E4]">
+                        {(post.author?.name || "Admin").charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
                     <div className="flex flex-col flex-1">
                       <span className="text-[16px] sm:text-[18px] font-bold text-[#461148] leading-tight mb-1">{post.author?.name || "Admin"}</span>
                       <span className="text-[13px] sm:text-[14px] text-[#828282]">{post.author?.bio || "Cybersecurity Expert"}</span>

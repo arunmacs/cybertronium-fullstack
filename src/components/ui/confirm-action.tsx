@@ -5,6 +5,8 @@ import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AlertCircle, Trash2 } from "lucide-react";
+import { toast } from "@/components/ui/sonner";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 interface ConfirmActionProps {
   action: () => any | Promise<any>;
@@ -62,8 +64,11 @@ export function ConfirmAction({
       await action();
       setIsOpen(false);
     } catch (error) {
+      if (isRedirectError(error)) throw error;
       console.error(error);
-      alert("An error occurred while confirming this action.");
+      toast.error("Action failed", {
+        description: "Something went wrong while confirming this action. Please try again.",
+      });
     } finally {
       setIsPending(false);
       setTypedValue("");

@@ -11,6 +11,7 @@ import { usePosts } from "@/hooks/usePosts";
 import { useTags } from "@/hooks/useTags";
 import { useDebounce } from "@/hooks/useDebounce";
 import SmartImage from "@/components/ui/SmartImage";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const POSTS_PER_PAGE = 6;
 
@@ -19,17 +20,16 @@ const USE_MOCK_DATA = false;
 
 const PostTags = ({ tags }: { tags: { slug: string; name: string }[] }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   if (!tags || tags.length === 0) return null;
 
   const INITIAL_TAGS_COUNT = 2;
   const hasMore = tags.length > INITIAL_TAGS_COUNT;
 
   return (
-    <div 
-      className={`flex flex-wrap gap-2 mb-3 pb-1 ${
-        isExpanded ? 'max-h-[64px] overflow-y-auto' : ''
-      }`}
+    <div
+      className={`flex flex-wrap gap-2 mb-3 pb-1 ${isExpanded ? 'max-h-[64px] overflow-y-auto' : ''
+        }`}
       style={isExpanded ? {
         scrollbarWidth: 'thin',
         scrollbarColor: '#F9D6E4 transparent'
@@ -253,7 +253,15 @@ const Blogs = () => {
 
                     <div className="mt-auto">
                       <div className="flex items-center mb-4">
-                        <span className="text-[#333333] font-semibold text-base">{post.author?.name || "Admin"}</span>
+                        <div className="flex items-center gap-2">
+                          <Avatar className="w-8 h-8 border border-gray-100">
+                            <AvatarImage src={post.author?.image || undefined} alt={post.author?.name || "Author"} className="object-cover" />
+                            <AvatarFallback className="bg-[#FDF0F5] text-[#C01E6C] font-semibold text-sm border border-[#F9D6E4]">
+                              {(post.author?.name || "Admin").charAt(0).toUpperCase()}
+                            </AvatarFallback>
+                          </Avatar>
+                          <span className="text-[#333333] font-semibold text-base">{post.author?.name || "Admin"}</span>
+                        </div>
                         <div className="flex-1 h-[1px] bg-gray-200 mx-4" />
                         <span className="text-gray-400 text-sm font-semibold whitespace-nowrap">{formatDate(post.publishedAt)}</span>
                       </div>
@@ -291,10 +299,10 @@ const Blogs = () => {
                     onClick={() => setCurrentPage(i + 1)}
                     disabled={totalPages <= 1}
                     className={`w-10 h-10 flex items-center justify-center text-[15px] font-medium transition-colors ${currentPage === i + 1 && totalPages > 1
-                        ? "bg-[#FDF0F5] text-[#C01E6C] rounded-full"
-                        : totalPages <= 1
-                          ? "text-[#D1D5DB] cursor-not-allowed"
-                          : "text-[#4F4F4F] hover:text-[#C01E6C]"
+                      ? "bg-[#FDF0F5] text-[#C01E6C] rounded-full"
+                      : totalPages <= 1
+                        ? "text-[#D1D5DB] cursor-not-allowed"
+                        : "text-[#4F4F4F] hover:text-[#C01E6C]"
                       }`}
                   >
                     {i + 1}
